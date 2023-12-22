@@ -6,9 +6,11 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -25,8 +27,9 @@ public class SecondActivity extends AppCompatActivity {
         btnChoose = findViewById(R.id.btnChoose);
 
         Bundle extras = getIntent().getExtras();
-        if(extras == null) {
-            tvName.setText("Null");
+        if(extras == null || extras.isEmpty()) {
+            tvName.setText("Name");
+            Toast.makeText(this, "Masuk sini", Toast.LENGTH_SHORT).show();
         } else {
             tvName.setText(extras.getString("name"));
         }

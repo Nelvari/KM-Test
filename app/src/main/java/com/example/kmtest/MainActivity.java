@@ -30,9 +30,23 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 String str = etPalindrome.getText().toString();
-                String newStr=new StringBuilder(str).reverse().toString();
+                String newStr = new StringBuilder(str).reverse().toString();
 
-                if(str.equals(newStr)){
+                if (str.isEmpty()){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setMessage("Input Text Palindrome")
+                            .setTitle("Warning")
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                else if (str.equals(newStr)){
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setMessage("isPalindrome")
@@ -71,9 +85,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                intent.putExtra("name", etName.getText().toString());
-                startActivity(intent);
+                if (etName.getText().toString().isEmpty()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setMessage("Input Text Name")
+                            .setTitle("Warning")
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                } else {
+                    Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                    intent.putExtra("name", etName.getText().toString());
+                    startActivity(intent);
+                }
 
             }
         });
